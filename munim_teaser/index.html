@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munim.ai - Cinematic Presentation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- GSAP for advanced cinematic animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <div class="background-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <div class="presentation-container">
+        <!-- Scene 1 -->
+        <div class="glass-card scene" id="scene-1">
+            <img src="logo.png" alt="Munim.ai Logo" class="logo">
+            <h1 class="anim-text">Meet <span class="highlight">Munim.ai</span> 📦</h1>
+        </div>
+
+        <!-- Scene 2 -->
+        <div class="glass-card scene" id="scene-2">
+            <h2 class="anim-text">The <span class="highlight">AI Business OS</span></h2>
+            <h2 class="anim-text" style="margin-top:10px;">for Local Shops.</h2>
+        </div>
+
+        <!-- Scene 3 -->
+        <div class="glass-card scene" id="scene-3">
+            <h2 class="anim-text" style="margin-bottom:30px;">Your Superpowers:</h2>
+            <div class="tags">
+                <span class="tag anim-tag">🛒 Sell</span>
+                <span class="tag anim-tag">📦 Track Stock</span>
+                <span class="tag anim-tag">🤝 Remember Customers</span>
+            </div>
+        </div>
+
+        <!-- Scene 4 -->
+        <div class="glass-card scene" id="scene-4">
+            <h2 class="anim-text">All on <span class="highlight-green">WhatsApp</span>.</h2>
+            <p class="anim-text" style="margin-top:20px;">Zero App Install required.</p>
+        </div>
+
+        <!-- Scene 5 -->
+        <div class="glass-card scene" id="scene-5" style="align-items: stretch; text-align: left;">
+            <p class="chat-bubble user anim-chat">"Nike shoes size 9 available?"</p>
+            <p class="chat-bubble ai anim-chat">"Yes! It's ₹2999. Should I reserve it?"</p>
+            <p class="chat-bubble user anim-chat">"Yes, send QR"</p>
+        </div>
+
+        <!-- Scene 6 -->
+        <div class="glass-card scene" id="scene-6">
+            <h2 class="anim-text">Instant AI Replies</h2>
+            <h2 class="anim-text">+ <span class="highlight">UPI Payments</span>.</h2>
+        </div>
+
+        <!-- Scene 7 -->
+        <div class="glass-card scene" id="scene-7">
+            <img src="logo.png" alt="Munim.ai Logo" class="logo pulse">
+            <h1 class="soon-text anim-text">Ready for Takeover.</h1>
+        </div>
+        
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </div>
+
+    <script>
+        // Total duration we want is ~120s. 
+        // 7 scenes. So each scene gets ~17 seconds of screen time.
+        // We will build a GSAP master timeline.
+        
+        gsap.set('.scene', { autoAlpha: 0, scale: 0.8, rotationX: 10, z: -100 });
+        gsap.set('.anim-text', { y: 30, opacity: 0, filter: 'blur(10px)' });
+        gsap.set('.anim-tag', { y: 20, opacity: 0, scale: 0.9 });
+        gsap.set('.anim-chat', { x: -30, opacity: 0 });
+        gsap.set('.chat-bubble.ai', { x: 30 }); // right side slide in
+        
+        const masterTl = gsap.timeline({ repeat: -1 });
+
+        // Update progress bar
+        masterTl.to('#progress-bar', {
+            width: '100%',
+            duration: 120,
+            ease: 'none'
+        }, 0);
+
+        // Helper function to animate a scene
+        // Each scene cycle takes about 17 seconds
+        function animateScene(sceneId, customAnim = null) {
+            const tl = gsap.timeline();
+            const scene = document.querySelector(sceneId);
+            
+            // 1. Entrance (3 seconds)
+            tl.to(scene, { 
+                duration: 2, 
+                autoAlpha: 1, 
+                scale: 1, 
+                rotationX: 0, 
+                z: 0, 
+                ease: 'power3.out' 
+            });
+
+            // Standard inner animations (staggered text)
+            const texts = scene.querySelectorAll('.anim-text');
+            if(texts.length > 0) {
+                tl.to(texts, {
+                    duration: 1.5,
+                    y: 0,
+                    opacity: 1,
+                    filter: 'blur(0px)',
+                    stagger: 0.4,
+                    ease: 'back.out(1.7)'
+                }, "-=1.5");
+            }
+
+            // Custom animations (like tags or chats)
+            if (customAnim) {
+                customAnim(tl, scene);
+            }
+
+            // 2. Hold/Idle (Wait enough time to make the total step ~17s)
+            // Entrance took ~2-3s. Exit will take ~2s. So we hold for ~12s.
+            tl.to({}, { duration: 12 });
+
+            // 3. Exit (2 seconds)
+            tl.to(scene, {
+                duration: 2,
+                autoAlpha: 0,
+                scale: 1.1,
+                z: 100,
+                filter: 'blur(15px)',
+                ease: 'power2.in'
+            });
+
+            return tl;
+        }
+
+        // Add scenes to master timeline sequentially
+        
+        // Scene 1
+        masterTl.add(animateScene('#scene-1'), 0);
+        
+        // Scene 2 (starts at ~17s)
+        masterTl.add(animateScene('#scene-2'), 17.1);
+        
+        // Scene 3 (starts at ~34s)
+        masterTl.add(animateScene('#scene-3', (tl, scene) => {
+            const tags = scene.querySelectorAll('.anim-tag');
+            tl.to(tags, {
+                duration: 1,
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                stagger: 0.3,
+                ease: 'elastic.out(1, 0.5)'
+            }, "-=1");
+        }), 34.2);
+
+        // Scene 4 (starts at ~51s)
+        masterTl.add(animateScene('#scene-4'), 51.3);
+
+        // Scene 5 (starts at ~68s)
+        masterTl.add(animateScene('#scene-5', (tl, scene) => {
+            const chats = scene.querySelectorAll('.anim-chat');
+            tl.to(chats, {
+                duration: 1,
+                x: 0,
+                opacity: 1,
+                stagger: 2, // 2 second pause between chat messages
+                ease: 'power3.out'
+            }, "-=1");
+        }), 68.4);
+
+        // Scene 6 (starts at ~85s)
+        masterTl.add(animateScene('#scene-6'), 85.5);
+
+        // Scene 7 (starts at ~102s)
+        masterTl.add(animateScene('#scene-7'), 102.6);
+
+    </script>
+</body>
+</html>

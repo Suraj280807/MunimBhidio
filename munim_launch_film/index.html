@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munim AI - Launch Film</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+</head>
+<body>
+    
+    <!-- Scene 0: Instant CSS-Only Interactive Pre-show -->
+    <div id="start-overlay" onclick="startFilm()">
+        <div id="preshow-bg"></div>
+        <div class="css-particles">
+            <div class="cp p1"></div><div class="cp p2"></div><div class="cp p3"></div>
+            <div class="cp p4"></div><div class="cp p5"></div><div class="cp p6"></div>
+        </div>
+        <div id="preshow-camera">
+            <div id="preshow-logo">
+                <div class="ambient-glow"></div>
+                <img src="logo_transparent.png" alt="Munim Logo" style="height: 100%; z-index: 5;" />
+                <div class="glow-ring"></div>
+            </div>
+            <h1 id="preshow-text">MUNIM AI</h1>
+            <p class="blink-text">CLICK TO INITIATE BROADCAST</p>
+        </div>
+    </div>
+
+    <!-- Master Stage -->
+    <div id="stage">
+        <div id="camera-rig">
+            
+            <div class="safe-margin">
+                
+                <!-- SCENE 1: The Shopping Environment & Messages -->
+                <div class="scene" id="sc-1-env">
+                    <div class="floating-space">
+                        <div class="f-obj o1"><img src="https://images.unsplash.com/photo-1555487505-8603a1a69755?auto=format&fit=crop&w=300&q=80" alt="Bags"></div>
+                        <div class="f-obj o2"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=300&q=80" alt="Shoes"></div>
+                        <div class="f-obj o3"><img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=300&q=80" alt="T-Shirts"></div>
+                        <div class="f-obj o4"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80" alt="Headphones"></div>
+                        <div class="f-obj o5"><img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=300&q=80" alt="Laptops"></div>
+                    </div>
+                    
+                    <div class="msg-bubbles">
+                        <div class="m-bub mb1">Is this available?</div>
+                        <div class="m-bub mb2">Blue shirt in XL?</div>
+                        <div class="m-bub mb3">Do you have iPhone 16?</div>
+                        <div class="m-bub mb4">Can I reserve this?</div>
+                        <div class="m-bub mb5">[ Voice Note: 0:12 ]</div>
+                        <div class="m-bub mb6">[ Screenshot Attached ]</div>
+                    </div>
+
+                    <div class="typography-sequence">
+                        <h1 class="slam-text" id="ts-1" style="text-transform: uppercase;">Customers don't search<br>anymore.</h1>
+                        <h1 class="slam-text" id="ts-2" style="text-transform: uppercase;">They simply ask.</h1>
+                    </div>
+
+                    <div class="hero-visuals">
+                        <div class="hero-vis v-audio shadow-card" style="padding: 20px 40px; background: #fff; border-radius: 40px; display:flex; align-items:center; gap: 15px; opacity: 0;">
+                            <div style="width:40px;height:40px;background:var(--brand-green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;">▶</div>
+                            <div style="font-weight: 800; color: var(--brand-green); font-size: 1.5rem; letter-spacing: 2px;">||||| | ||| | |||</div>
+                        </div>
+                        <div class="hero-vis v-image shadow-card" style="padding: 10px; background: #fff; border-radius: 20px; opacity: 0;">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=200&q=80" style="border-radius: 10px; width: 150px; height: 150px; object-fit: cover;"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE 2: The Freeze & Reveal -->
+                <div class="scene" id="sc-2-reveal">
+                    <div class="reveal-logo">
+                        <img src="logo_transparent.png" alt="Munim Logo" class="m-logo" />
+                    </div>
+                    <div class="reveal-text">
+                        <h1 class="slam-text" id="rv-0" style="text-transform: uppercase;">Presenting...</h1>
+                        <h1 class="slam-text" id="rv-1" style="text-transform: uppercase;">Munim AI.</h1>
+                        <h1 class="slam-text" id="rv-2" style="text-transform: uppercase;">One WhatsApp Number.</h1>
+                        <h1 class="slam-text" id="rv-3" style="text-transform: uppercase;">Unlimited possibilities.</h1>
+                    </div>
+                </div>
+
+                <!-- SCENE 3: How It Works Timeline -->
+                <div class="scene" id="sc-3-timeline">
+                    <div class="shadow-card timeline-container" style="width: 100%;">
+                        <div class="t-line"></div>
+                        <div class="t-step"><div class="circle">1</div><p>Message</p></div>
+                        <div class="t-step"><div class="circle">2</div><p>Language</p></div>
+                        <div class="t-step"><div class="circle">3</div><p>Intent</p></div>
+                        <div class="t-step"><div class="circle">4</div><p>Inventory</p></div>
+                        <div class="t-step"><div class="circle">5</div><p>Action</p></div>
+                        <div class="t-step"><div class="circle">6</div><p>Reply</p></div>
+                        <div class="t-step"><div class="circle">7</div><p>Dashboard</p></div>
+                    </div>
+                </div>
+
+                <!-- SCENE 4: Full Dashboard Features -->
+                <div class="scene" id="sc-4-dash">
+
+                    <!-- Minimalist Premium Feature Overlays -->
+                    
+                    <!-- Feature 1: Text Message -->
+                    <div id="feat-text" style="opacity: 0; visibility: hidden; position: absolute; z-index: 100; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.9); display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                        <div style="width: 56px; height: 56px; background: #0B5D4A; border-radius: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(11,93,74,0.3);">
+                            <span style="font-size: 24px; filter: hue-rotate(200deg);">💬</span>
+                        </div>
+                        <div style="background: #ffffff; padding: 20px 24px; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); font-size: 1.4rem; font-weight: 500; color: #13231D; display: flex; align-items: center; justify-content: center; min-width: 280px; height: 70px;">
+                            <span id="f-type-text" class="type-text">Is iPhone 16 available?</span>
+                            <span id="f-cursor" style="display: inline-block; width: 2px; height: 1.2em; background: #0B5D4A; opacity: 0; margin-left: 4px;"></span>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: Image Search -->
+                    <div id="feat-img" style="opacity: 0; visibility: hidden; position: absolute; z-index: 100; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.9); display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                        <div style="width: 56px; height: 56px; background: #0B5D4A; border-radius: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(11,93,74,0.3);">
+                            <span style="font-size: 24px;">🖼️</span>
+                        </div>
+                        <div style="background: #ffffff; padding: 15px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); position: relative;">
+                            <div style="width: 180px; height: 180px; background: #e0e0e0; border-radius: 12px; overflow: hidden; position: relative;">
+                                <img src="iphone16.png" style="width: 100%; height: 100%; object-fit: cover; opacity: 1;">
+                                <div id="f-scan-line" style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: #4ae176; box-shadow: 0 0 15px #4ae176; opacity: 0;"></div>
+                            </div>
+                        </div>
+                        <div id="f-img-badge" style="background: #0B5D4A; color: #fff; padding: 10px 24px; border-radius: 30px; font-weight: 600; font-size: 1.1rem; opacity: 0; transform: translateY(-10px);">
+                            iPhone 16 - Recognized
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: Voice Note -->
+                    <div id="feat-voice" style="opacity: 0; visibility: hidden; position: absolute; z-index: 100; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.9); display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                        <div style="position: relative; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;">
+                            <div id="f-mic-ring" style="position: absolute; width: 100px; height: 100px; background: #D3E4DE; border-radius: 50%; transform: scale(1);"></div>
+                            <div style="width: 56px; height: 56px; background: #0B5D4A; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; box-shadow: 0 10px 30px rgba(11,93,74,0.3);">
+                                <span style="font-size: 24px;">🎤</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 4px; height: 24px; align-items: center;">
+                            <div class="f-wf" style="width: 4px; height: 12px; background: #0B5D4A; border-radius: 2px;"></div>
+                            <div class="f-wf" style="width: 4px; height: 24px; background: #0B5D4A; border-radius: 2px;"></div>
+                            <div class="f-wf" style="width: 4px; height: 16px; background: #0B5D4A; border-radius: 2px;"></div>
+                            <div class="f-wf" style="width: 4px; height: 20px; background: #0B5D4A; border-radius: 2px;"></div>
+                            <div class="f-wf" style="width: 4px; height: 10px; background: #0B5D4A; border-radius: 2px;"></div>
+                        </div>
+                        <div style="background: #ffffff; width: 280px; height: 70px; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.1);"></div>
+                    </div>
+
+
+                    
+                    <div class="shadow-card dash-ui" id="main-dashboard-ui" style="opacity: 0;">
+                        <div class="sidebar">
+                            <div class="sb-logo">Munim.ai</div>
+                            <div class="sb-item active">Overview</div>
+                            <div class="sb-item">Orders</div>
+                            <div class="sb-item">Inventory</div>
+                            <div class="sb-item">Analytics</div>
+                            <div class="sb-item">CRM</div>
+                            <div class="sb-item">Settings</div>
+                        </div>
+                        <div class="main-content">
+                            <h2>Overview</h2>
+                            <div class="metrics">
+                                <div class="metric-card shadow-card">
+                                    <span>REVENUE</span><strong class="counter" id="c-rev">₹0</strong>
+                                </div>
+                                <div class="metric-card shadow-card">
+                                    <span>ORDERS TODAY</span><strong class="counter" id="c-ord">0</strong>
+                                </div>
+                                <div class="metric-card shadow-card">
+                                    <span>PENDING</span><strong class="counter" id="c-pen">0</strong>
+                                </div>
+                            </div>
+                            
+                            <div class="dash-grid">
+                                <div class="orders-list shadow-card">
+                                    <h3 style="margin-bottom:10px;">Recent orders</h3>
+                                    <div class="order-row o-r-1" style="opacity:0">
+                                        <div class="o-icon">O</div>
+                                        <div class="o-details">+919900555001 • 1x iphone 16</div>
+                                        <div class="badge">RESERVED</div>
+                                    </div>
+                                    <div class="order-row o-r-2" style="opacity:0">
+                                        <div class="o-icon">O</div>
+                                        <div class="o-details">+919900555001 • 5x maggi</div>
+                                        <div class="badge">RESERVED</div>
+                                    </div>
+                                </div>
+                                <div class="analytics-mini shadow-card">
+                                    <h3 style="margin-bottom:10px;">Activity</h3>
+                                    <div class="bars">
+                                        <div class="bar b1"></div><div class="bar b2"></div>
+                                        <div class="bar b3"></div><div class="bar b4"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wa-panel">
+                            <div class="w-head"><div style="width:10px;height:10px;background:#4ae176;border-radius:50%"></div> Munim AI Chat</div>
+                            <div class="w-body" id="wa-chat-container">
+                                <div class="bubble a b-1" style="opacity:0; transform: translateY(10px)">Hi! Munim is ready for the shop chat.</div>
+                                <div class="bubble u b-2" style="opacity:0; transform: translateY(10px)">is iphone 16 available?</div>
+                                
+                                <div class="bubble a typing-indicator" style="opacity:0; transform: translateY(10px)">
+                                    <span>•</span><span>•</span><span>•</span>
+                                </div>
+                                
+                                <div class="bubble a pulse b-3" style="opacity:0; transform: translateY(10px)">Yes! iPhone 16 — ₹83,999. Shall I reserve it?</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE 5: Inventory Modal (Typing Demo) -->
+                <div class="scene" id="sc-5-inv">
+                    <div class="shadow-card add-modal" style="margin: auto;">
+                        <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 25px;">+ Add Product</h3>
+                        <div class="inp-group" style="margin-bottom: 20px;">
+                            <label>PRODUCT NAME</label>
+                            <div class="inp-box"><div class="type-text" id="inp-name">iphone 16</div></div>
+                        </div>
+                        <div class="input-grid">
+                            <div class="inp-group">
+                                <label>PRICE (₹)</label>
+                                <div class="inp-box"><div class="type-text" id="inp-price">83999</div></div>
+                            </div>
+                            <div class="inp-group">
+                                <label>STOCK QUANTITY</label>
+                                <div class="inp-box"><div class="type-text" id="inp-stock">37</div></div>
+                            </div>
+                        </div>
+                        <div class="modal-actions" style="margin-top: 30px;">
+                            <button class="btn-save" id="btn-save">Save Product</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE 6: Finale -->
+                <div class="scene" id="sc-6-finale">
+                    
+                    <img src="logo_transparent.png" class="f-logo" style="position: absolute; height: 150px; top: 35%; left: 50%; transform: translate(-50%, -50%);   opacity: 0; visibility: hidden; z-index: 20;" />
+                    <h1 class="slam-text f-slam" id="f-slam-0" style="color:var(--text-color); text-transform: uppercase;">Smarter conversations.</h1>
+                    <h1 class="slam-text f-slam" id="f-slam-1" style="color:var(--text-color); text-transform: uppercase;">Faster decisions.</h1>
+                    <h1 class="slam-text f-slam" id="f-slam-2" style="color:var(--text-color); text-transform: uppercase;">Happier customers.</h1>
+                    <h1 class="slam-text f-slam" id="f-slam-3" style="color:var(--text-color); text-transform: uppercase;">One intelligent assistant.</h1>
+                    <h1 class="slam-text f-slam" id="f-slam-4" style="color:var(--text-color); text-transform: uppercase;">One WhatsApp Number.</h1>
+                    <h1 class="slam-text f-slam" id="f-slam-5" style="color:var(--text-color); text-transform: uppercase;">Presenting...</h1>
+                    <h1 class="slam-text f-slam" id="f-slam-6" style="color:var(--text-color); text-transform: uppercase;">The future of AI-powered business.</h1>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <!-- Audio Assets -->
+    <audio id="bgm" src="bgm.mp3" loop preload="auto"></audio>
+    <audio id="vo_master" src="vo_master.mp3" preload="auto"></audio>
+    <script src="film.js"></script>
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const cam = document.getElementById('preshow-camera');
+            if(cam) {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                cam.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            }
+        });
+    </script>
+</body>
+</html>

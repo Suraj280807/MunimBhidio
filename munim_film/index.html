@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munim.ai Cinematic Film</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
+    
+    <!-- GSAP & SplitType -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+</head>
+<body>
+
+    <!-- Motion Blur SVG Filter -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <filter id="motion-blur-x">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="0,0" id="blur-x-val" />
+        </filter>
+        <filter id="motion-blur-y">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="0,0" id="blur-y-val" />
+        </filter>
+        <filter id="glitch-distort">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05 0.95" numOctaves="1" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" id="distort-val" />
+        </filter>
+    </svg>
+
+    <div id="start-screen">
+        <button id="start-btn">PLAY FILM</button>
+        <p>Headphones recommended. Cinematic experience.</p>
+    </div>
+
+    <!-- The Stage -->
+    <div id="viewport">
+        <div id="camera-rig">
+            
+            <!-- Scene 1: Typography Slam -->
+            <div class="scene" id="scene-words">
+                <h1 class="slam-text" id="word-manage">MANAGE</h1>
+                <h1 class="slam-text" id="word-your">YOUR</h1>
+                <h1 class="slam-text" id="word-shop">SHOP.</h1>
+            </div>
+
+            <!-- Scene 2: The Solution / WhatsApp UI -->
+            <div class="scene" id="scene-app">
+                <div class="glass-orb" id="orb-1"></div>
+                <div class="glass-orb" id="orb-2"></div>
+                
+                <div class="glass-ui" id="wa-mock">
+                    <div class="wa-header">Munim AI Assistant</div>
+                    <div class="wa-chat user-chat" id="chat-1">Nike size 9?</div>
+                    <div class="wa-chat ai-chat" id="chat-2">Yes, 2 left. ₹2999.<br><div class="upi-btn">Pay via UPI</div></div>
+                </div>
+            </div>
+
+            <!-- Scene 3: Fast Features -->
+            <div class="scene" id="scene-features">
+                <h1 class="giant-word" id="feat-sell">SELL.</h1>
+                <h1 class="giant-word" id="feat-track">TRACK STOCK.</h1>
+                <h1 class="giant-word" id="feat-crm">CRM.</h1>
+            </div>
+
+            <!-- Scene 4: Transition & No App -->
+            <div class="scene" id="scene-no-app">
+                <div id="green-wipe"></div>
+                <h1 class="dark-text" id="zero-install">ZERO APP INSTALLS.</h1>
+                <h1 class="dark-text" id="just-wa">JUST WHATSAPP.</h1>
+            </div>
+
+            <!-- Scene 5: Finale -->
+            <div class="scene" id="scene-finale">
+                <div class="volumetric-light"></div>
+                
+                <div id="final-logo-wrapper">
+                    <svg class="final-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="20" width="60" height="60" rx="15" stroke="#4ae176" stroke-width="4" id="logo-box"/>
+                        <path d="M35 50L45 60L65 40" stroke="#0F5C46" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" id="logo-check"/>
+                    </svg>
+                </div>
+                
+                <h1 class="finale-brand">Munim.ai</h1>
+                <h2 class="finale-tagline">Ready for Takeover.</h2>
+            </div>
+            
+            <!-- Global Flash -->
+            <div id="global-flash"></div>
+
+        </div>
+    </div>
+
+    <!-- Mini ZZFX Audio Synthesizer (No external files) -->
+    <script src="film.js"></script>
+</body>
+</html>

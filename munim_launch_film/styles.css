@@ -1,0 +1,230 @@
+:root {
+    --brand-green: #0B5D4A;
+    --bg-color: #F6FAF7;
+    --text-color: #13231D;
+    --accent-light: rgba(11, 93, 74, 0.1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { background-color: var(--bg-color); color: var(--text-color); overflow: hidden; width: 100vw; height: 100vh; line-height: 1.4; }
+
+/* Pre-show */
+#start-overlay {
+    position: fixed; top:0; left:0; width:100vw; height:100vh;
+    background: #042f25; z-index: 99999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; overflow: hidden; perspective: 1000px;
+}
+#preshow-bg {
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background: radial-gradient(circle at center, rgba(74, 225, 118, 0.15) 0%, transparent 80%);
+    animation: pulseBg 4s infinite alternate, moveGradient 10s infinite linear;
+    background-size: 200% 200%;
+}
+#preshow-camera {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2;
+    transform-style: preserve-3d; transition: transform 0.1s ease-out;
+}
+#preshow-logo {
+    position: relative; width: auto; height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2; margin-bottom: 20px;
+    background: #fff; padding: 20px 40px; border-radius: 40px;
+    box-shadow: 0 20px 50px rgba(74, 225, 118, 0.15);
+}
+.glow-ring {
+    position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
+    border: 2px solid #4ae176; border-radius: 50%;
+    animation: rotateGlow 3s linear infinite;
+}
+.ambient-glow {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 200px; height: 200px; background: #4ae176; filter: blur(50px); opacity: 0.2; z-index: -1;
+    animation: pulseAmbient 3s infinite alternate;
+}
+#preshow-text {
+    font-size: 5rem; letter-spacing: -0.05em; color: #fff; font-weight: 800; z-index: 2; margin-bottom: 10px; line-height: 1;
+}
+.blink-text {
+    font-size: 1.125rem; font-weight: 500; color: #4ae176; z-index: 2;
+    animation: blink 1s infinite; text-transform: uppercase; letter-spacing: 0.1em;
+}
+.css-particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; pointer-events: none; }
+.cp { position: absolute; width: 4px; height: 4px; background: #4ae176; border-radius: 50%; opacity: 0.5; animation: floatUp 10s infinite linear; }
+.p1 { left: 10%; top: 110%; animation-duration: 8s; }
+.p2 { left: 30%; top: 110%; animation-duration: 12s; animation-delay: 2s; }
+.p3 { left: 50%; top: 110%; animation-duration: 9s; animation-delay: 1s; }
+.p4 { left: 70%; top: 110%; animation-duration: 15s; }
+.p5 { left: 85%; top: 110%; animation-duration: 11s; animation-delay: 3s; }
+.p6 { left: 95%; top: 110%; animation-duration: 14s; }
+
+/* Stage */
+#stage {
+    position: absolute; width: 100%; height: 100%;
+    perspective: 1200px; overflow: hidden;
+}
+#camera-rig {
+    position: absolute; width: 100%; height: 100%;
+    transform-style: preserve-3d;
+}
+.safe-margin {
+    position: absolute; top: 10vh; left: 10vw; width: 80vw; height: 80vh;
+    display: flex; align-items: center; justify-content: center;
+    transform-style: preserve-3d;
+}
+.scene {
+    position: absolute; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    transform-style: preserve-3d;
+}
+
+/* Scene 1: Floating Objects & Typography */
+.floating-space {
+    position: absolute; width: 100%; height: 100%; z-index: 1;
+}
+.f-obj {
+    position: absolute; background: #fff; border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(11,93,74,0.1); opacity: 0;
+    overflow: hidden; padding: 10px; width: 150px; height: 150px;
+    display: flex; align-items: center; justify-content: center;
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+}
+.f-obj img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+.msg-bubbles {
+    position: absolute; width: 100%; height: 100%; z-index: 2;
+}
+.m-bub {
+    position: absolute; padding: 16px 24px; background: #dcf8c6; color: var(--text-color);
+    border-radius: 20px; border-top-left-radius: 0; font-weight: 500; font-size: 1.25rem; line-height: 1.4;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1); opacity: 0;
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+}
+.typography-sequence {
+    position: absolute; width: 100%; height: 100%; z-index: 3; display: flex; align-items: center; justify-content: center;
+}
+.hero-visuals {
+    position: absolute; z-index: 5; display: flex; gap: 40px; align-items: center; justify-content: center;
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+}
+.slam-text {
+    position: absolute; font-size: 5rem; font-weight: 800; letter-spacing: -0.05em;
+    color: var(--brand-green); width: 100%; text-align: center; left: 50%; top: 50%;
+    transform: translate(-50%, -50%); line-height: 1;
+    opacity: 0; visibility: hidden;
+    white-space: nowrap;
+}
+
+/* Scene 2: Reveal */
+.reveal-logo {
+    position: absolute; display: flex; flex-direction: column; align-items: center;
+}
+.m-logo {
+    width: auto; height: 240px; object-fit: contain;
+    margin-bottom: 20px;  
+}
+.reveal-text {
+    position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    margin-top: 240px; width: 100%;
+}
+.reveal-text .slam-text {
+    position: absolute; font-size: 5rem; width: 100%; text-align: center;
+}
+
+/* Components */
+.shadow-card {
+    background: #FFFFFF; border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(11, 93, 74, 0.08);
+    border: 1px solid rgba(11, 93, 74, 0.05);
+}
+
+/* Dashboard UI */
+.dash-ui { 
+    width: 1000px; height: 600px; display: flex; overflow: hidden;
+}
+.sidebar { 
+    width: 220px; background: var(--bg-color); border-right: 1px solid rgba(11,93,74,0.1); 
+    padding: 30px 0; display: flex; flex-direction: column; 
+}
+.sb-logo { 
+    font-weight: 900; font-size: 1.5rem; padding: 0 30px; margin-bottom: 40px; color: var(--brand-green); 
+}
+.sb-item { 
+    padding: 15px 30px; font-weight: 500; color: #666; font-size: 1.125rem; cursor: pointer; 
+}
+.sb-item.active { 
+    color: var(--brand-green); background: var(--accent-light); border-right: 4px solid var(--brand-green); 
+}
+.main-content { 
+    flex: 1; padding: 40px; background: #fff; display: flex; flex-direction: column; gap: 20px;
+}
+.main-content h2 { font-size: 2.8rem; font-weight: 700; color: var(--text-color); letter-spacing: -0.02em; line-height: 1.05; }
+.metrics { display: flex; gap: 20px; }
+.metric-card { 
+    flex: 1; padding: 20px; display: flex; flex-direction: column; 
+    border-left: 4px solid var(--brand-green); background: var(--bg-color); 
+}
+.metric-card span { font-size: 1rem; font-weight: 600; color: #888; margin-bottom: 10px; letter-spacing: 0.05em; }
+.metric-card strong { font-size: 2.5rem; font-weight: 700; color: var(--brand-green); letter-spacing: -0.02em; }
+
+.dash-grid {
+    display: flex; gap: 20px; flex: 1;
+}
+.orders-list { flex: 2; padding: 20px; background: var(--bg-color); }
+.analytics-mini { flex: 1; padding: 20px; background: var(--bg-color); display: flex; flex-direction: column; }
+.dash-grid h3 { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 15px; }
+.order-row { 
+    display: flex; align-items: center; padding: 12px; background: #fff; 
+    border-radius: 8px; margin-bottom: 10px; gap: 15px; 
+}
+.o-icon { width: 35px; height: 35px; background: var(--accent-light); color: var(--brand-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+.o-details { flex: 1; font-weight: 500; font-size: 1.25rem; color: var(--text-color); }
+.badge { font-size: 1rem; font-weight: 600; background: #E5F6EE; color: var(--brand-green); padding: 5px 12px; border-radius: 20px; letter-spacing: 0.02em; }
+.bars { display: flex; align-items: flex-end; gap: 10px; flex: 1; }
+.bar { background: var(--brand-green); width: 25%; border-radius: 4px 4px 0 0; }
+
+.wa-panel { 
+    width: 350px; background: #E5DDD5; display: flex; flex-direction: column; border-left: 1px solid rgba(11,93,74,0.1);
+    position: relative; overflow: hidden;
+}
+.w-head { background: var(--brand-green); color: #fff; padding: 20px; font-weight: 600; font-size: 1.125rem; display: flex; align-items: center; gap: 10px;}
+.w-body { padding: 20px; display: flex; flex-direction: column; gap: 15px; flex: 1; }
+.w-body .bubble { padding: 16px 20px; border-radius: 12px; font-size: 1.25rem; line-height: 1.4; max-width: 85%; box-shadow: 0 1px 2px rgba(0,0,0,0.1); font-weight: 500; transform-origin: top left; }
+.w-body .u { background: #fff; align-self: flex-end; border-top-right-radius: 0; color: var(--text-color); transform-origin: top right; }
+.w-body .a { background: #dcf8c6; align-self: flex-start; border-top-left-radius: 0; color: var(--text-color); }
+.typing-indicator span { display: inline-block; font-size: 1.2rem; line-height: 1; margin: 0 1px; color: var(--brand-green); animation: typeBounce 1.4s infinite ease-in-out both; }
+.typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+/* Timeline Components */
+.timeline-container { display: flex; justify-content: space-between; width: 100%; padding: 40px; position: relative; }
+.t-line { position: absolute; top: 60px; left: 40px; right: 40px; height: 4px; background: var(--accent-light); z-index: 0; }
+.t-step { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+.t-step p { font-weight: 600; font-size: 1.125rem; color: var(--text-color); }
+.t-step .circle { width: 40px; height: 40px; background: var(--brand-green); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+
+/* Add Inventory Modal */
+.add-modal { width: 500px; padding: 40px; }
+.add-modal h3 { margin-bottom: 30px; font-size: 2.25rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text-color); }
+.input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.inp-group label { font-size: 1rem; font-weight: 600; color: #666; margin-bottom: 8px; display: block; letter-spacing: 0.02em; }
+.inp-box { 
+    border: 1px solid rgba(11, 93, 74, 0.2); padding: 0 16px; border-radius: 8px; 
+    font-size: 1.25rem; font-weight: 500; background: var(--bg-color); 
+    height: 50px; display: flex; align-items: center; width: 100%; color: var(--text-color);
+}
+.type-text { display: block; width: 100%; line-height: 1.4; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 15px; }
+.btn-save { background: var(--brand-green); color: #fff; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 1.125rem; cursor: pointer; }
+
+/* Finale */
+.center-wa-hub { width: auto; height: 180px; position: absolute; z-index: 10;   object-fit: contain; }
+.hub-orb { position: absolute; padding: 15px 30px; background: #fff; border-radius: 30px; font-weight: 700; color: var(--brand-green); box-shadow: 0 10px 30px rgba(11,93,74,0.15); border: 2px solid var(--accent-light); }
+.f-slam { position: absolute; text-align: center; width: 100%; font-size: 5rem; }
+
+/* CSS Keyframes */
+@keyframes pulseBg { 0% { opacity: 0.8; } 100% { opacity: 1; } }
+@keyframes moveGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes rotateGlow { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.1); } 100% { transform: rotate(360deg) scale(1); } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes pulseAmbient { 0% { opacity: 0.1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.5); } }
+@keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 0; } 10% { opacity: 0.5; } 90% { opacity: 0.5; } 100% { transform: translateY(-120vh) scale(2); opacity: 0; } }
+@keyframes typeBounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }

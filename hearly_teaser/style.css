@@ -1,0 +1,299 @@
+:root {
+    --bg-color: #0b0f19;
+    --primary: #00ffcc;
+    --secondary: #b052ff;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Liquid Glass Background */
+.background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    overflow: hidden;
+    background: #050510;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: moveBlobs 20s infinite alternate;
+}
+
+.blob-1 {
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+    top: -10vw;
+    left: -10vw;
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+    bottom: -20vw;
+    right: -10vw;
+    animation-delay: -5s;
+    animation-duration: 25s;
+}
+
+.blob-3 {
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, #0088ff 0%, transparent 70%);
+    top: 40vh;
+    left: 30vw;
+    animation-delay: -10s;
+    animation-duration: 18s;
+}
+
+.blob-4 {
+    width: 30vw;
+    height: 30vw;
+    background: radial-gradient(circle, #ff0077 0%, transparent 70%);
+    top: 10vh;
+    right: 20vw;
+    animation-delay: -15s;
+    animation-duration: 22s;
+}
+
+@keyframes moveBlobs {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(10vw, -10vh) scale(1.1); }
+    66% { transform: translate(-5vw, 15vh) scale(0.9); }
+    100% { transform: translate(15vw, 5vh) scale(1.2); }
+}
+
+.noise-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.05"/%3E%3C/svg%3E');
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Presentation Setup */
+.presentation-container {
+    position: relative;
+    z-index: 10;
+    width: 90vw;
+    max-width: 1200px;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glass-card {
+    position: absolute;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    padding: 60px;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    opacity: 0; /* Default invisible */
+    pointer-events: none; /* Let clicks pass through if needed */
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.3);
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+h2 {
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+p {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.highlight {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.tags {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: var(--primary);
+}
+
+.pulse {
+    animation: pulseGlow 3s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 20px rgba(0, 255, 204, 0.2); transform: scale(1); }
+    100% { box-shadow: 0 0 60px rgba(176, 82, 255, 0.6); transform: scale(1.05); }
+}
+
+.soon-text {
+    font-size: 5rem;
+    background: linear-gradient(90deg, #ff0077, var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 2s infinite linear;
+    background-size: 200% auto;
+}
+
+@keyframes shimmer {
+    to { background-position: 200% center; }
+}
+
+/* 120s Presentation Sequence (120s total) */
+/* 
+    Time mapping (120s total):
+    12.5% = 15s
+    25.0% = 30s
+    37.5% = 45s
+    50.0% = 60s
+    62.5% = 75s
+    75.0% = 90s
+    100%  = 120s
+*/
+
+.scene {
+    animation-duration: 120s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-iteration-count: infinite;
+}
+
+.scene-1 { animation-name: showScene1; }
+.scene-2 { animation-name: showScene2; }
+.scene-3 { animation-name: showScene3; }
+.scene-4 { animation-name: showScene4; }
+.scene-5 { animation-name: showScene5; }
+.scene-6 { animation-name: showScene6; }
+.scene-7 { animation-name: showScene7; }
+
+@keyframes showScene1 {
+    0% { opacity: 0; transform: translateY(40px) scale(0.9); }
+    2%, 10% { opacity: 1; transform: translateY(0) scale(1); }
+    12.5%, 100% { opacity: 0; transform: translateY(-40px) scale(0.9); }
+}
+
+@keyframes showScene2 {
+    0%, 10% { opacity: 0; transform: translateY(40px) scale(0.9); }
+    12.5%, 22.5% { opacity: 1; transform: translateY(0) scale(1); }
+    25%, 100% { opacity: 0; transform: translateY(-40px) scale(0.9); }
+}
+
+@keyframes showScene3 {
+    0%, 22.5% { opacity: 0; transform: translateY(40px) scale(0.9); }
+    25%, 35% { opacity: 1; transform: translateY(0) scale(1); }
+    37.5%, 100% { opacity: 0; transform: translateY(-40px) scale(0.9); }
+}
+
+@keyframes showScene4 {
+    0%, 35% { opacity: 0; transform: translateY(40px) scale(0.9); }
+    37.5%, 47.5% { opacity: 1; transform: translateY(0) scale(1); }
+    50%, 100% { opacity: 0; transform: translateY(-40px) scale(0.9); }
+}
+
+@keyframes showScene5 {
+    0%, 47.5% { opacity: 0; transform: translateY(40px) scale(0.9); }
+    50%, 60% { opacity: 1; transform: translateY(0) scale(1); }
+    62.5%, 100% { opacity: 0; transform: translateY(-40px) scale(0.9); }
+}
+
+@keyframes showScene6 {
+    0%, 60% { opacity: 0; transform: translateY(40px) scale(0.9); }
+    62.5%, 72.5% { opacity: 1; transform: translateY(0) scale(1); }
+    75%, 100% { opacity: 0; transform: translateY(-40px) scale(0.9); }
+}
+
+@keyframes showScene7 {
+    0%, 72.5% { opacity: 0; transform: translateY(40px) scale(0.9); }
+    75%, 98% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-40px) scale(0.9); }
+}
+
+/* Progress bar */
+.progress-bar-container {
+    position: absolute;
+    bottom: 20px;
+    width: 90vw;
+    max-width: 1200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    width: 0%;
+    animation: progress 120s linear infinite;
+}
+
+@keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
